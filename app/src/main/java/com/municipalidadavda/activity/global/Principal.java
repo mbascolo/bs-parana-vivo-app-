@@ -1,40 +1,48 @@
-package com.municipalidadavda.Noticias;
+package com.municipalidadavda.activity.global;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.municipalidadavda.activity.seguridad.Login;
+import com.municipalidadavda.rn.global.AdaptadorDePost;
+import com.municipalidadavda.rn.global.GsonPostParser;
+import com.municipalidadavda.modelo.global.Noticia;
 import com.municipalidadavda.R;
+import com.municipalidadavda.rn.global.NoticiasRN;
+import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
+import com.municipalidadavda.utils.ActivityBase;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivityPost extends AppCompatActivity {
+public class Principal extends ActivityBase implements View.OnClickListener {
 
-    /*
-    Variables globales
-     */
-    ListView lista;
-    ArrayAdapter adaptador;
-    HttpURLConnection con;
-    Button btn_reservar;
+    private ListView lista;
+    private ArrayAdapter adaptador;
+
+
+    private NoticiasRN noticiasRN;
+    private NotificacionesRN notificacionesRN;
+    private boolean logueado;
+    private String usuario;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -45,33 +53,24 @@ public class MainActivityPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_post);
+        setContentView(R.layout.activity_principal);
+
+        noticiasRN = new NoticiasRN(this);
+        notificacionesRN = new NotificacionesRN(this);
 
         lista = (ListView) findViewById(R.id.listaAnimales);
+        context = this;
 
-        //btn_reservar = (Button) findViewById(R.id.btn_reservar);
+        if(isNetworkConnected()){
 
+            CargarNoticiasTask cn = new CargarNoticiasTask();
+            cn.execute();
 
-        /*
-        Comprobar la disponibilidad de la Red
-         */
-        try {
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-            if (networkInfo != null && networkInfo.isConnected()) {
-                new JsonTask().
-                        execute(
-                                new URL("http://www.avellaneda.gov.ar/json/generarJSON.php"));
-            } else {
-                Toast.makeText(this, "Error de conexión", Toast.LENGTH_LONG).show();
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        }else{
+            Toast.makeText(this,"No tienes conexión a internet",Toast.LENGTH_LONG).show();
         }
+
+        notificacionesRN = new NotificacionesRN(this);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -118,25 +117,53 @@ public class MainActivityPost extends AppCompatActivity {
         client.disconnect();
     }
 
-    //ARREGLAR ESTO!!!
-    // public void onMasInfo(View v) {
-    //    TextView descrip = (TextView)v.findViewById(R.id.descAnimal);
+    @Override
+    protected void onResume(){
 
-    //    Intent i = new Intent(v.getContext(),DetalleProducto.class);
-    //    i.putExtra("mDesc",descrip.getText().toString());
-    //    startActivity(i);
-    //}
+        super.onResume();
 
-    public class JsonTask extends AsyncTask<URL, Void, List<Post>> {
+        SharedPreferences prefs = getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        logueado = prefs.getBoolean(getResources().getString(R.string.PROPERTY_LOGUEADO), false);
+
+        if(!logueado){
+            iniciarLogin();
+        }
+    }
+
+    public void onClick(View v) {
+
+    }
+
+    private void iniciarLogin(){
+
+        Intent intent = new Intent(context, Login.class);
+        startActivity(intent);
+    }
+
+    public class CargarNoticiasTask extends AsyncTask<Void, Void, List<Noticia>> {
+
+        private HttpURLConnection con;
 
         @Override
-        protected List<Post> doInBackground(URL... urls) {
-            List<Post> animales = null;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd = new ProgressDialog(context);
+            pd.setMessage("Actualizando noticias");
+            pd.setIndeterminate(false);
+            pd.setCancelable(true);
+            pd.show();
+        }
+
+        @Override
+        protected List<Noticia> doInBackground(Void... arg0) {
+            List<Noticia> noticias = null;
 
             try {
 
+                URL url = new URL("http://www.avellaneda.gov.ar/json/generarJSON.php");
+
                 // Establecer la conexión
-                con = (HttpURLConnection) urls[0].openConnection();
+                con = (HttpURLConnection) url.openConnection();
                 con.setConnectTimeout(15000);
                 con.setReadTimeout(10000);
 
@@ -144,8 +171,8 @@ public class MainActivityPost extends AppCompatActivity {
                 int statusCode = con.getResponseCode();
 
                 if (statusCode != 200) {
-                    animales = new ArrayList<>();
-                    animales.add(new Post("Error", null, null));
+                    noticias = new ArrayList<>();
+                    noticias.add(new Noticia("Error", null, null));
 
                 } else {
 
@@ -155,37 +182,36 @@ public class MainActivityPost extends AppCompatActivity {
                     // JsonPostParser parser = new JsonPostParser();
                     GsonPostParser parser = new GsonPostParser();
 
-                    animales = parser.leerFlujoJson(in);
-
-
+                    noticias = parser.leerFlujoJson(in);
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.d("Error cargando noticias",e.getMessage());
 
             } finally {
                 con.disconnect();
             }
-            return animales;
+            return noticias;
         }
 
         @Override
-        protected void onPostExecute(List<Post> animales) {
+        protected void onPostExecute(List<Noticia> noticias) {
             /*
             Asignar los objetos de Json parseados al adaptador
              */
-            if (animales != null) {
-                adaptador = new AdaptadorDePost(getBaseContext(), animales);
-                lista.setAdapter(adaptador);
+            if (noticias != null) {
+                adaptador = new AdaptadorDePost(context, noticias);
             } else {
                 Toast.makeText(
-                        getBaseContext(),
+                        context,
                         "Ocurrió un error de Parsing Json",
                         Toast.LENGTH_SHORT)
                         .show();
             }
 
+            if(pd!=null) pd.dismiss();
         }
+
     }
 
-}
+    }

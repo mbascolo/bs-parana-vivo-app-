@@ -1,6 +1,8 @@
-package com.municipalidadavda.Noticias;
+package com.municipalidadavda.rn.global;
 
 import android.util.JsonReader;
+
+import com.municipalidadavda.modelo.global.Noticia;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +16,7 @@ import java.util.List;
 public class JsonPostParser {
 
 
-    public List<Post> leerFlujoJson(InputStream in) throws IOException {
+    public List<Noticia> leerFlujoJson(InputStream in) throws IOException {
         // Nueva instancia JsonReader
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
@@ -28,9 +30,9 @@ public class JsonPostParser {
 
 
 
-    public List<Post> leerArrayAnimales(JsonReader reader) throws IOException {
+    public List<Noticia> leerArrayAnimales(JsonReader reader) throws IOException {
         // Lista temporal
-        ArrayList<Post> animales = new ArrayList<>();
+        ArrayList<Noticia> animales = new ArrayList<>();
 
         reader.beginArray();
         while (reader.hasNext()) {
@@ -41,7 +43,7 @@ public class JsonPostParser {
         return animales;
     }
 
-    public Post leerAnimal(JsonReader reader) throws IOException {
+    public Noticia leerAnimal(JsonReader reader) throws IOException {
         // Variables locales
         String id = null;
         String postTitle = null;
@@ -74,7 +76,7 @@ public class JsonPostParser {
             }
         }
         reader.endObject();
-        return new Post(id, postTitle, postContent);
+        return new Noticia(id, postTitle, postContent);
     }
 
 }

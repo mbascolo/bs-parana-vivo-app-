@@ -1,17 +1,17 @@
-package com.municipalidadavda.Noticias;
+package com.municipalidadavda.modelo.global;
 
 /**
  * Creado por Matias Báscolo
  */
-public class Post {
+public class Noticia {
     private String ID;
     private String post_title;
     private String post_content;
 
-    public Post(){
+    public Noticia(){
     }
 
-    public Post(String ID, String post_title, String post_content) {
+    public Noticia(String ID, String post_title, String post_content) {
         this.ID = ID;
         this.post_title = post_title;
         this.post_content = post_content;

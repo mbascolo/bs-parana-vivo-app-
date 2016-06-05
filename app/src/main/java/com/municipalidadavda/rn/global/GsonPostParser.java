@@ -1,7 +1,8 @@
-package com.municipalidadavda.Noticias;
+package com.municipalidadavda.rn.global;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import com.municipalidadavda.modelo.global.Noticia;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,20 +16,20 @@ import java.util.List;
 public class GsonPostParser {
 
 
-    public List<Post> leerFlujoJson(InputStream in) throws IOException {
+    public List<Noticia> leerFlujoJson(InputStream in) throws IOException {
         // Nueva instancia de la clase Gson
         Gson gson = new Gson();
 
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-        List<Post> animales = new ArrayList<>();
+        List<Noticia> animales = new ArrayList<>();
 
         // Iniciar el array
         reader.beginArray();
 
         while (reader.hasNext()) {
             // Lectura de objetos
-            Post post = gson.fromJson(reader, Post.class);
-            animales.add(post);
+            Noticia noticia = gson.fromJson(reader, Noticia.class);
+            animales.add(noticia);
         }
 
 

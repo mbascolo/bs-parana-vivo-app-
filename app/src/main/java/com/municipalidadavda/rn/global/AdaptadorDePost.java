@@ -1,4 +1,4 @@
-package com.municipalidadavda.Noticias;
+package com.municipalidadavda.rn.global;
 
 import android.content.Context;
 import android.text.Html;
@@ -9,15 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.municipalidadavda.R;
+import com.municipalidadavda.modelo.global.Noticia;
 
 import java.util.List;
 
 /**
  * Creado por Beansoft.
  */
-public class AdaptadorDePost extends ArrayAdapter<Post> {
+public class AdaptadorDePost extends ArrayAdapter<Noticia> {
 
-    public AdaptadorDePost(Context context, List<Post> objects) {
+    public AdaptadorDePost(Context context, List<Noticia> objects) {
         super(context, 0, objects);
     }
 
@@ -48,7 +49,7 @@ public class AdaptadorDePost extends ArrayAdapter<Post> {
 
 
         //Obteniendo instancia de la Tarea en la posición actual
-        Post item = getItem(position);
+        Noticia item = getItem(position);
 
         Id.setText(item.getID());
         postTitle.setText(item.getPost_title());

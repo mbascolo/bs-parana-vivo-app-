@@ -1,4 +1,4 @@
-package com.municipalidadavda.GCM;
+package com.municipalidadavda.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

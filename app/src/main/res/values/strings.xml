@@ -1,10 +1,22 @@
 <resources>
-    <string name="app_name">Municipalidadavda</string>
+    <string name="app_name">Municipalidad Avellaneda</string>
+
+    //ID proyecto
+    <string name="NROCTA_SERVER_PUSH">00001</string>
+    <string name="PROJECT_ID">556085573505</string>
+    <string name="URL_REST_SERVER">http://bsgestion.com.ar/bs-push/rest/</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_listado_posts">ListadoPosts</string>
     <string name="title_activity_login">LoginActivity</string>
 
+    <string name="PROPERTY_ID_REGISTRO_GCM">id_registro_gcm</string>
+    <string name="PROPERTY_APP_VERSION">appVersion</string>
+    <string name="PROPERTY_TIEMPO_CADUCIDAD">onServerExpirationTimeMs</string>
+    <string name="PROPERTY_NOMBRE">nombre</string>
+    <string name="PROPERTY_APELLIDO">apellido</string>
+    <string name="PROPERTY_BARRIO">password</string>
+    <string name="PROPERTY_LOGUEADO">logueado</string>
 
 </resources>
