@@ -16,9 +16,9 @@ import java.util.List;
 /**
  * Creado por Beansoft.
  */
-public class AdaptadorDePost extends ArrayAdapter<Noticia> {
+public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
 
-    public AdaptadorDePost(Context context, List<Noticia> objects) {
+    public AdaptadorNoticia(Context context, List<Noticia> objects) {
         super(context, 0, objects);
     }
 
@@ -36,7 +36,7 @@ public class AdaptadorDePost extends ArrayAdapter<Noticia> {
         if (null == convertView) {
             //Si no existe, entonces inflarlo
             v = inflater.inflate(
-                    R.layout.item_lista,
+                    R.layout.principal_lista,
                     parent,
                     false);
         }

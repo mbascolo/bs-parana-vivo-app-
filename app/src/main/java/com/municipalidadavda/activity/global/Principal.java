@@ -17,11 +17,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.municipalidadavda.activity.seguridad.Login;
-import com.municipalidadavda.rn.global.AdaptadorDePost;
-import com.municipalidadavda.rn.global.GsonPostParser;
+import com.municipalidadavda.rn.global.AdaptadorNoticia;
 import com.municipalidadavda.modelo.global.Noticia;
 import com.municipalidadavda.R;
-import com.municipalidadavda.rn.global.NoticiasRN;
+import com.municipalidadavda.rn.global.NoticiaRN;
 import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
 import com.municipalidadavda.utils.ActivityBase;
 
@@ -39,7 +38,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
     private ArrayAdapter adaptador;
 
 
-    private NoticiasRN noticiasRN;
+    private NoticiaRN noticiasRN;
     private NotificacionesRN notificacionesRN;
     private boolean logueado;
     private String usuario;
@@ -53,16 +52,17 @@ public class Principal extends ActivityBase implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.principal);
 
-        noticiasRN = new NoticiasRN(this);
+        context = this;
+        noticiasRN = new NoticiaRN(this);
         notificacionesRN = new NotificacionesRN(this);
 
         lista = (ListView) findViewById(R.id.listaAnimales);
-        context = this;
 
         if(isNetworkConnected()){
 
+            Log.d("Cargando noticias","***********************************************************");
             CargarNoticiasTask cn = new CargarNoticiasTask();
             cn.execute();
 
@@ -70,7 +70,6 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             Toast.makeText(this,"No tienes conexión a internet",Toast.LENGTH_LONG).show();
         }
 
-        notificacionesRN = new NotificacionesRN(this);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -179,10 +178,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
                     // Parsear el flujo con formato JSON
                     InputStream in = new BufferedInputStream(con.getInputStream());
 
-                    // JsonPostParser parser = new JsonPostParser();
-                    GsonPostParser parser = new GsonPostParser();
-
-                    noticias = parser.leerFlujoJson(in);
+                    noticias = noticiasRN.leerFlujoJson(in);
                 }
 
             } catch (Exception e) {
@@ -200,7 +196,8 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             Asignar los objetos de Json parseados al adaptador
              */
             if (noticias != null) {
-                adaptador = new AdaptadorDePost(context, noticias);
+                adaptador = new AdaptadorNoticia(context, noticias);
+                lista.setAdapter(adaptador);
             } else {
                 Toast.makeText(
                         context,

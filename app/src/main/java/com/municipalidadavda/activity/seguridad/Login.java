@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +19,6 @@ import com.municipalidadavda.R;
 import com.municipalidadavda.modelo.notificaciones.UsuarioPush;
 import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
 import com.municipalidadavda.utils.ActivityBase;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class Login extends ActivityBase implements View.OnClickListener {
 
@@ -44,7 +36,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login);
 
         notificacionesRN = new NotificacionesRN(this);
 
@@ -74,9 +66,9 @@ public class Login extends ActivityBase implements View.OnClickListener {
                 "Bo San Martín"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, items);
+                R.layout.login_spinner_item, items);
 
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.login_spinner_dropdown_item);
         dynamicSpinner.setAdapter(adapter);
 
 
@@ -125,6 +117,8 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
         if(!logueado){
             Toast.makeText(this, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
+        }else{
+            finish();
         }
     }
 

@@ -38,10 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ListadoPosts"
-            android:label="@string/title_activity_listado_posts" >
-        </activity>
+
         <activity
             android:name=".activity.seguridad.Login"
             android:label="Login"
