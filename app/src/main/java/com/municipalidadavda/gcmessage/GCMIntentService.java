@@ -1,4 +1,4 @@
-package com.municipalidadavda.gcm;
+package com.municipalidadavda.gcmessage;
 
 import android.app.IntentService;
 import android.app.Notification;

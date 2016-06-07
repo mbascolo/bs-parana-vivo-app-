@@ -51,12 +51,12 @@
 
 
         <service
-            android:name=".gcm.GCMIntentService"
+            android:name=".gcmessage.GCMIntentService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name=".gcm.GCMBroadcastReceiver"
+            android:name=".gcmessage.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
