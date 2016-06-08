@@ -9,6 +9,8 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 
+
+
     defaultConfig {
         applicationId "com.municipalidadavda"
         minSdkVersion 16
@@ -33,6 +35,5 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.google.android.gms:play-services-appindexing:8.3.0'
-    compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.google.code.gson:gson:2.3.1'
 }

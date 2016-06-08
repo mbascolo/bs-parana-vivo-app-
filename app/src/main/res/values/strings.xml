@@ -18,5 +18,6 @@
     <string name="PROPERTY_APELLIDO">apellido</string>
     <string name="PROPERTY_BARRIO">password</string>
     <string name="PROPERTY_LOGUEADO">logueado</string>
+    <string name="title_activity_bienvenida">Bienvenida</string>
 
 </resources>
