@@ -24,11 +24,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logomunipeq"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.global.Principal"
+            android:name=".activity.global.Bienvenida"
             android:label="Municipalidad de Avellaneda" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +42,8 @@
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity
-            android:name=".activity.global.Bienvenida"
-            android:label="@string/title_activity_bienvenida" >
+            android:name=".activity.global.Principal"
+            android:label="Municipalidad de Avellaneda" >
         </activity>
 
         <meta-data

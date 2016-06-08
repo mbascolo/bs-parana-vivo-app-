@@ -7,6 +7,37 @@
     tools:context=".activity.seguridad.Login"
     android:background="@drawable/fondo">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logomuni" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrese los datos solicitados para poder recibir las notificaciones."
+        android:id="@+id/textView3"
+        android:gravity="center"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFF"
+        android:textSize="18dp"
+        android:textAlignment="center" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,17 +93,11 @@
         android:textSize="18dp"
         android:textColor="#FFF"
         android:background="#ef0000"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onIngresar" />
+        android:onClick="onIngresar"
+        android:layout_below="@+id/logResultado"
+        android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/logomuni" />
+
 
     <Spinner
         android:id="@+id/dynamic_spinner"
@@ -88,7 +113,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="Log resultado"
         android:id="@+id/logResultado"
         android:layout_below="@+id/dynamic_spinner"
         android:layout_alignParentLeft="true"
@@ -98,8 +123,9 @@
         android:textAlignment="center"
         android:textColor="#07117d"
         android:textSize="20dp"
-        android:textAppearance="@android:color/holo_blue_dark"
         android:textStyle="bold" />
+
+
 
 
 </RelativeLayout>
