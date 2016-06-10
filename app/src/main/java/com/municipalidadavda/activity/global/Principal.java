@@ -62,7 +62,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
         if(isNetworkConnected()){
 
-            Log.d("Cargando noticias","***********************************************************");
+
             CargarNoticiasTask cn = new CargarNoticiasTask();
             cn.execute();
 
@@ -121,23 +121,14 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
         super.onResume();
 
-        SharedPreferences prefs = getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
-        logueado = prefs.getBoolean(getResources().getString(R.string.PROPERTY_LOGUEADO), false);
 
-        if(!logueado){
-            iniciarLogin();
-        }
     }
 
     public void onClick(View v) {
 
     }
 
-    private void iniciarLogin(){
 
-        Intent intent = new Intent(context, Login.class);
-        startActivity(intent);
-    }
 
     public class CargarNoticiasTask extends AsyncTask<Void, Void, List<Noticia>> {
 

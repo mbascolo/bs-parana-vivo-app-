@@ -111,14 +111,16 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
         notificacionesRN.verificarRegistroGCM(usuarioPush);
 
-
         SharedPreferences prefs = getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
         logueado = prefs.getBoolean(getResources().getString(R.string.PROPERTY_LOGUEADO), false);
 
-        if(!logueado){
-            Toast.makeText(this, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
-        }else{
+        Log.d("logueado", String.valueOf(logueado));
+
+        if(logueado){
+            Log.d("Pasa por aca","Login exitoso");
             finish();
+        }else{
+            Toast.makeText(this, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
         }
     }
 

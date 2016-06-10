@@ -89,8 +89,6 @@ public class NotificacionesRN {
 
                 manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-                //usuarioPush.setImei(manager.getDeviceId());
-
                 //Nos registramos en los servidores de GCM
                 usuarioPush.setIdRegistro(gcm.register(context.getResources().getString(R.string.PROJECT_ID)));
 
