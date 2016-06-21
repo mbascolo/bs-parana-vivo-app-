@@ -7,6 +7,7 @@ public class UsuarioPush{
 
     private String nombre;
     private String apellido;
+    private String email;
     private String nrocta;
     private String imei;
     private String idRegistro;
@@ -64,4 +65,11 @@ public class UsuarioPush{
         this.codRubro01 = codRubro01;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

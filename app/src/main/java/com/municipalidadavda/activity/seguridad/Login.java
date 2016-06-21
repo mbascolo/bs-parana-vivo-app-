@@ -51,6 +51,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
     private TelephonyManager manager;
     private EditText nombre;
     private EditText apellido;
+    private EditText email;
     Spinner dynamicSpinner;
     private TextView resultado;
     private ProgressDialog pd;
@@ -125,6 +126,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
         nombre = (EditText) findViewById(R.id.logNombre);
         apellido = (EditText) findViewById(R.id.logApellido);
+        email = (EditText) findViewById(R.id.logEmail);
 
         nombre.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
@@ -141,6 +143,20 @@ public class Login extends ActivityBase implements View.OnClickListener {
         });
 
         apellido.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event)
+            {
+                boolean action = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE ||   actionId == EditorInfo.IME_ACTION_NEXT) {
+
+                    email.requestFocus();
+                    action = true;
+                }
+                return action;
+            }
+        });
+
+        email.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent event)
             {
@@ -171,9 +187,14 @@ public class Login extends ActivityBase implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        if(!puedoIngresar()){
+            return;
+        }
+
         resultado = (TextView) findViewById(R.id.logResultado);
 
         usuarioPush = new UsuarioPush();
+        usuarioPush.setEmail(email.getText().toString());
         usuarioPush.setNombre(nombre.getText().toString());
         usuarioPush.setApellido(apellido.getText().toString());
         usuarioPush.setCodRubro01("01");
@@ -181,6 +202,26 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
         verificarRegistroGCM(usuarioPush);
     }
+
+    private boolean puedoIngresar(){
+
+        if(nombre.getText()==null || nombre.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese su nombre y vuelva a intentar", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(apellido.getText()==null || apellido.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese su apellido y vuelva a intentar", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(email.getText()==null || email.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese su e-mail y vuelva a intentar", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
