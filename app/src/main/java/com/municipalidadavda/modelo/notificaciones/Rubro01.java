@@ -12,6 +12,12 @@ public class Rubro01 {
     public Rubro01() {
     }
 
+    public Rubro01( String nrocta, String codigo, String descripcion) {
+        this.codigo = codigo;
+        this.nrocta = nrocta;
+        this.descripcion = descripcion;
+    }
+
     public String getCodigo() {
         return codigo;
     }
