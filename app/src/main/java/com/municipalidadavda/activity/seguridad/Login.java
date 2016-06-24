@@ -29,6 +29,8 @@ import com.municipalidadavda.R;
 import com.municipalidadavda.modelo.notificaciones.Rubro01;
 import com.municipalidadavda.modelo.notificaciones.UsuarioPush;
 import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
+import com.municipalidadavda.rn.notificaciones.Rubro01Adapter;
+import com.municipalidadavda.rn.notificaciones.Rubro01RN;
 import com.municipalidadavda.utils.ActivityBase;
 
 import org.apache.http.HttpResponse;
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -58,6 +61,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
     private TextView resultado;
     private ProgressDialog pd;
     private NotificacionesRN notificacionesRN;
+    private Rubro01RN rubro01RN;
     SharedPreferences prefs;
     private GoogleCloudMessaging gcm;
     private Context context;
@@ -77,6 +81,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
         setContentView(R.layout.login);
 
         notificacionesRN = new NotificacionesRN(this);
+        rubro01RN = new Rubro01RN(this);
 
         context = this;
         cargarPreferencias();
@@ -84,32 +89,17 @@ public class Login extends ActivityBase implements View.OnClickListener {
         btnIngresar = (Button) findViewById(R.id.btn_ingresar);
         btnIngresar.setOnClickListener(this);
 
+
+        // Construimos la fuente de datos
+        ArrayList<Rubro01> rubros01 = rubro01RN.getLista();
+        // Creamos el adaptador para convertir a las vistas
+        Rubro01Adapter adapter = new Rubro01Adapter(this, rubros01);
+
         dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-
-        Rubro01[] items = new Rubro01[] {
-
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"01","Bo Aire y Sol"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"02","América"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"03","Belgrano Este"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"04","Belgrano Oeste"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"05","Constitución"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"06","Coperación"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"07","Don Pedro"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"08","Itatí"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"09","Libertad"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"10","Lourdes"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"11","Martín Fierro"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"12","Norte"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"13","Nuevo"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"14","Padre Celso María Milanesio"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"15","Port Artur"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"16","San Martín"),
-                new Rubro01(context.getResources().getString(R.string.NROCTA_SERVER_PUSH),"17","Sartor")};
-
-        ArrayAdapter<Rubro01> adapter = new ArrayAdapter<Rubro01>(this, R.layout.login_spinner_item, items);
-
-        adapter.setDropDownViewResource(R.layout.login_spinner_dropdown_item);
         dynamicSpinner.setAdapter(adapter);
+
+        //adapter.setDropDownViewResource(R.layout.login_spinner_dropdown_item);
+
 
 
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -118,8 +108,8 @@ public class Login extends ActivityBase implements View.OnClickListener {
                                        int position, long id) {
                 Log.v("item", ((Rubro01) parent.getItemAtPosition(position)).toString());
 
-                Rubro01 r = (Rubro01) parent.getItemAtPosition(position);
-                usuarioPush.setCodRubro01(r.getCodigo());
+                //Rubro01 r = (Rubro01) parent.getItemAtPosition(position);
+                //usuarioPush.setCodRubro01(r.getCodigo());
             }
 
             @Override
@@ -201,7 +191,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
         usuarioPush.setEmail(email.getText().toString());
         usuarioPush.setNombre(nombre.getText().toString());
         usuarioPush.setApellido(apellido.getText().toString());
-        usuarioPush.setCodRubro01("01");
+        usuarioPush.setCodRubro01(((Rubro01)dynamicSpinner.getSelectedItem()).getCodigo());
         usuarioPush.setNrocta(getResources().getString(R.string.NROCTA_SERVER_PUSH));
 
         verificarRegistroGCM(usuarioPush);
@@ -223,6 +213,13 @@ public class Login extends ActivityBase implements View.OnClickListener {
             Toast.makeText(this, "Ingrese su e-mail y vuelva a intentar", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if(dynamicSpinner.getSelectedItem()==null){
+            Toast.makeText(this, "Seleccine el barrio donde vive", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
         return true;
     }
 
