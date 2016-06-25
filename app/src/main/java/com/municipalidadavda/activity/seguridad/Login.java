@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -272,7 +273,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
             //display progress dialog
             pd = new ProgressDialog(context);
-            pd.setTitle("Verificando acceso");
+            pd.setTitle("Registrando");
             pd.setMessage("Aguarde un momento");
             pd.setCancelable(true);
             pd.setIndeterminate(false);
@@ -297,12 +298,16 @@ public class Login extends ActivityBase implements View.OnClickListener {
                 //Nos registramos en nuestro servidor
                 registrado = registroServidor();
 
+                System.err.println("registro*******************" + registrado);
+
+                registrado=true;
                 //Guardamos los datos del registro
                 if(registrado)
                 {
                     setRegistrationId();
                 }else{
-                    Toast.makeText(context, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
+                    Log.d("No es posible registrarse", "");
+                    //Toast.makeText(context, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
                 }
             }
             catch (IOException ex){
@@ -396,7 +401,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
             registro.put("nombre", usuarioPush.getNombre());
             registro.put("apellido"   ,usuarioPush.getApellido());
             registro.put("nrocta", usuarioPush.getNrocta());
-            registro.put("imei", usuarioPush.getImei());
+            registro.put("email", usuarioPush.getEmail());
             registro.put("idRegistro", usuarioPush.getIdRegistro());
             registro.put("codRubro01", usuarioPush.getCodRubro01());
 
