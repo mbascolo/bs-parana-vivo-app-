@@ -58,6 +58,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
     private EditText nombre;
     private EditText apellido;
     private EditText email;
+    private String imei;
     Spinner dynamicSpinner;
     private TextView resultado;
     private ProgressDialog pd;
@@ -220,7 +221,6 @@ public class Login extends ActivityBase implements View.OnClickListener {
             return false;
         }
 
-
         return true;
     }
 
@@ -290,8 +290,12 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
                 manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
+                manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                imei = manager.getDeviceId();
+
                 //Nos registramos en los servidores de GCM
                 usuarioPush.setIdRegistro(gcm.register(context.getResources().getString(R.string.PROJECT_ID)));
+                usuarioPush.setImei(imei);
 
                 Log.d("TareaRegistroGCM", "Registrado en GCM: registration_id=" + usuarioPush.getIdRegistro());
 
@@ -300,7 +304,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
 
                 System.err.println("registro*******************" + registrado);
 
-                registrado=true;
+                //registrado=true;
                 //Guardamos los datos del registro
                 if(registrado)
                 {
@@ -402,6 +406,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
             registro.put("apellido"   ,usuarioPush.getApellido());
             registro.put("nrocta", usuarioPush.getNrocta());
             registro.put("email", usuarioPush.getEmail());
+            registro.put("imei", usuarioPush.getImei());
             registro.put("idRegistro", usuarioPush.getIdRegistro());
             registro.put("codRubro01", usuarioPush.getCodRubro01());
 
