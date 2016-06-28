@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Municipalidad Avellaneda</string>
+    <string name="app_name">Gobierno de Avellaneda</string>
 
     //ID proyecto
     <string name="NROCTA_SERVER_PUSH">00001</string>
