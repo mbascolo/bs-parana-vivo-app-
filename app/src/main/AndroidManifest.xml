@@ -29,6 +29,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activity.global.Bienvenida"
+            android:screenOrientation="portrait"
             android:label="Municipalidad de Avellaneda" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,11 +39,13 @@
         </activity>
         <activity
             android:name=".activity.seguridad.Login"
+            android:screenOrientation="portrait"
             android:label="Ingreso"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity
             android:name=".activity.global.Principal"
+            android:screenOrientation="portrait"
             android:label="Municipalidad de Avellaneda" >
         </activity>
 
