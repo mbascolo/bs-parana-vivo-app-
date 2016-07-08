@@ -63,11 +63,11 @@ public class GCMIntentService extends IntentService {
                         .setContentTitle(titulo)
                         .setContentText(mensaje);
 
-        Intent notIntent =  new Intent(this, Principal.class);
-        PendingIntent contIntent = PendingIntent.getActivity(
-                this, 0, notIntent, 0);
+        Intent intent =  new Intent(this, Principal.class);
+        PendingIntent contIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         mBuilder.setContentIntent(contIntent);
+        mBuilder.setAutoCancel(true);
 
         // Set Vibrate, Sound and Light
         int defaults = 0;
