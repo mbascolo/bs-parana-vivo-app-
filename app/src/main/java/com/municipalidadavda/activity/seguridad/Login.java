@@ -289,11 +289,11 @@ public class Login extends ActivityBase implements View.OnClickListener {
                 if (gcm == null) gcm = GoogleCloudMessaging.getInstance(context);
 
                 manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                imei = manager.getDeviceId();
+                //imei = manager.getDeviceId();
 
                 //Nos registramos en los servidores de GCM
                 usuarioPush.setIdRegistro(gcm.register(context.getResources().getString(R.string.PROJECT_ID)));
-                usuarioPush.setImei(imei);
+                //usuarioPush.setImei(imei);
 
                 Log.d("TareaRegistroGCM", "Registrado en GCM: registration_id=" + usuarioPush.getIdRegistro());
 
