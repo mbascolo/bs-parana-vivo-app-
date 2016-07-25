@@ -3,23 +3,28 @@ package com.municipalidadavda.activity.global;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.municipalidadavda.activity.seguridad.Login;
-import com.municipalidadavda.rn.global.AdaptadorNoticia;
 import com.municipalidadavda.modelo.global.Noticia;
 import com.municipalidadavda.R;
 import com.municipalidadavda.rn.global.NoticiaRN;
@@ -27,18 +32,19 @@ import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
 import com.municipalidadavda.utils.ActivityBase;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import android.text.Html.ImageGetter;
 
 
 public class Principal extends ActivityBase implements View.OnClickListener {
 
     private ListView lista;
     private ArrayAdapter adaptador;
-
 
     private NoticiaRN noticiasRN;
     private NotificacionesRN notificacionesRN;
@@ -152,8 +158,6 @@ public class Principal extends ActivityBase implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     public class CargarNoticiasTask extends AsyncTask<Void, Void, List<Noticia>> {
 
         private HttpURLConnection con;
@@ -226,4 +230,88 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
     }
 
+    public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
+
+        public AdaptadorNoticia(Context context, List<Noticia> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent){
+
+            //Obteniendo una instancia del inflater
+            LayoutInflater inflater = (LayoutInflater)getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            //Salvando la referencia del View de la fila
+            View v = convertView;
+
+            //Comprobando si el View no existe
+            if (null == convertView) {
+                //Si no existe, entonces inflarlo
+                v = inflater.inflate(
+                        R.layout.principal_lista,
+                        parent,
+                        false);
+            }
+
+            //Obteniendo instancias de los elementos
+            TextView Id = (TextView)v.findViewById(R.id.ID);
+            TextView postTitle = (TextView)v.findViewById(R.id.postTitle);
+            TextView postContent = (TextView)v.findViewById(R.id.postContent);
+
+
+            //Obteniendo instancia de la Tarea en la posición actual
+            Noticia item = getItem(position);
+
+            Id.setText(item.getID());
+            postTitle.setText(item.getPost_title());
+            Log.d("HTML",item.getPost_content());
+
+            cargarContenidoHTML(postContent,item);
+
+
+            return v;
+
+        }
     }
+
+    public ImageGetter getImageHTML(){
+        ImageGetter ig = new ImageGetter(){
+            public Drawable getDrawable(String source) {
+                try{
+
+                    Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
+                    d.setBounds(0, 0, d.getIntrinsicWidth(),d.getIntrinsicHeight());
+                    return d;
+                }catch(IOException e){
+                    Log.d("IOException",e.getMessage());
+                    return null;
+                }
+            }
+        };
+        return ig;
+    }
+
+    private void cargarContenidoHTML(final TextView postContent, final Noticia item) {
+
+        Thread networkThread = new Thread() {
+            @Override
+            public void run() {
+
+                try {
+
+                    Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+                    postContent.setText(s);
+
+                } catch (Exception e) {
+
+                    //System.err.println("Error cargando imagenes: " + e);
+                }
+            }
+        };
+        networkThread.start();
+    }
+
+
+}

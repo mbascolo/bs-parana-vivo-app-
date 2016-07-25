@@ -1,7 +1,10 @@
 package com.municipalidadavda.rn.global;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.Html;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 import com.municipalidadavda.R;
 import com.municipalidadavda.modelo.global.Noticia;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -45,7 +50,6 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
         TextView Id = (TextView)v.findViewById(R.id.ID);
         TextView postTitle = (TextView)v.findViewById(R.id.postTitle);
         TextView postContent = (TextView)v.findViewById(R.id.postContent);
-        //ImageView imagenAnimal = (ImageView)v.findViewById(R.id.imagenAnimal);
 
 
         //Obteniendo instancia de la Tarea en la posición actual
@@ -53,25 +57,32 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
 
         Id.setText(item.getID());
         postTitle.setText(item.getPost_title());
-        postContent.setText(Html.fromHtml(item.getPost_content()));
 
-        //imagenAnimal.setImageResource(convertirRutaEnId(item.getPathImagenBannerMiniatura()));
+        Log.d("HTML",item.getPost_content());
 
-        //Devolver al ListView la fila creada
+        Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+
+        postContent.setText(s);
+
         return v;
 
     }
 
-    /**
-     * Este método nos permite obtener el Id de un drawable a través
-     * de su nombre
-     * @param nombre  Nombre del drawable sin la extensión de la imagen
-     *
-     * @return Retorna un tipo int que representa el Id del recurso
-     */
-    private int convertirRutaEnId(String nombre){
-        Context context = getContext();
-        return context.getResources()
-                .getIdentifier(nombre, "drawable", context.getPackageName());
+    public Html.ImageGetter getImageHTML(){
+        Html.ImageGetter ig = new Html.ImageGetter(){
+            public Drawable getDrawable(String source) {
+                try{
+                    Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
+                    d.setBounds(0, 0, d.getIntrinsicWidth(),d.getIntrinsicHeight());
+                    return d;
+                }catch(IOException e){
+                    Log.d("IOException",e.getMessage());
+                    return null;
+                }
+            }
+        };
+        return ig;
     }
+
+
 }

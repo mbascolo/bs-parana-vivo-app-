@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     packagingOptions {
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.municipalidadavda"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 4
         versionName "1.4"
         multiDexEnabled true
