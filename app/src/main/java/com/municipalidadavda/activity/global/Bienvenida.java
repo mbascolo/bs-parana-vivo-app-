@@ -34,6 +34,13 @@ public class Bienvenida extends ActivityBase {
             }
         });
 
+        Button cambiarPerfil = (Button)findViewById(R.id.btn_perfil);
+        cambiarPerfil.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(Bienvenida.this,Perfil.class));
+            }
+        });
+
     }
 
     @Override

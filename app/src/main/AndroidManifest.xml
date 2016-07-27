@@ -44,6 +44,11 @@
             android:screenOrientation="portrait"
             android:label="Municipalidad de Avellaneda" >
         </activity>
+        <activity
+            android:name=".activity.global.Perfil"
+            android:screenOrientation="portrait"
+            android:label="Municipalidad de Avellaneda" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

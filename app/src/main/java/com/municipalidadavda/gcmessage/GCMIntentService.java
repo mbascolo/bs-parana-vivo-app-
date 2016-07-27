@@ -68,6 +68,7 @@ public class GCMIntentService extends IntentService {
 
         mBuilder.setContentIntent(contIntent);
         mBuilder.setAutoCancel(true);
+        mBuilder.setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 });
 
         // Set Vibrate, Sound and Light
         int defaults = 0;
