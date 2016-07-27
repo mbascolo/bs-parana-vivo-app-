@@ -198,6 +198,12 @@ public class Principal extends ActivityBase implements View.OnClickListener {
                     InputStream in = new BufferedInputStream(con.getInputStream());
 
                     noticias = noticiasRN.leerFlujoJson(in);
+
+                    for(Noticia item: noticias){
+
+                        Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+                        item.setSpanned(s);
+                    }
                 }
 
             } catch (Exception e) {
@@ -233,6 +239,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
     public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
 
         public AdaptadorNoticia(Context context, List<Noticia> objects) {
+
             super(context, 0, objects);
         }
 
@@ -266,9 +273,9 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
             Id.setText(item.getID());
             postTitle.setText(item.getPost_title());
-            Log.d("HTML",item.getPost_content());
+            postContent.setText(item.getSpanned());
 
-            cargarContenidoHTML(postContent,item);
+
 
 
             return v;
@@ -293,7 +300,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
         return ig;
     }
 
-    private void cargarContenidoHTML(final TextView postContent, final Noticia item) {
+    private void cargarContenidoHTML(final Noticia item) {
 
         Thread networkThread = new Thread() {
             @Override
@@ -302,7 +309,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
                 try {
 
                     Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
-                    postContent.setText(s);
+                    item.setSpanned(s);
 
                 } catch (Exception e) {
 

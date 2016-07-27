@@ -1,5 +1,7 @@
 package com.municipalidadavda.modelo.global;
 
+import android.text.Spanned;
+
 /**
  * Creado por Matias Báscolo
  */
@@ -7,6 +9,7 @@ public class Noticia {
     private String ID;
     private String post_title;
     private String post_content;
+    private Spanned spanned;
 
     public Noticia(){
     }
@@ -40,5 +43,13 @@ public class Noticia {
 
     public void setPost_content(String post_content) {
         this.post_content = post_content;
+    }
+
+    public Spanned getSpanned() {
+        return spanned;
+    }
+
+    public void setSpanned(Spanned spanned) {
+        this.spanned = spanned;
     }
 }
