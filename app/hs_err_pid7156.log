@@ -205,7 +205,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -Djava.awt.headless=true -Xmx1024M -Dfile.encoding=windows-1252 -Duser.country=AR -Duser.language=es -Duser.variant 
-java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.4.0_28713ca233591915f451bd1eeb5eca5e347abf80 C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar
+java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.4.0_28713ca233591915f451bd1eeb5eca5e347abf80 C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar
 Launcher Type: SUN_STANDARD
 
 Environment Variables:

@@ -1,4 +1,4 @@
-package com.municipalidadavda.rn.global;
+package com.paranavivo.rn.global;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.municipalidadavda.R;
-import com.municipalidadavda.modelo.global.Noticia;
+import com.paranavivo.R;
+import com.paranavivo.modelo.global.Noticia;
 
 import java.io.IOException;
 import java.net.URL;

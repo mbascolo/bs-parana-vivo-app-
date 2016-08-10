@@ -1,4 +1,4 @@
-package com.municipalidadavda.activity.global;
+package com.paranavivo.activity.global;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.municipalidadavda.R;
-import com.municipalidadavda.activity.seguridad.Login;
-import com.municipalidadavda.utils.ActivityBase;
+import com.paranavivo.R;
+import com.paranavivo.activity.seguridad.Login;
+import com.paranavivo.utils.ActivityBase;
 
 public class Bienvenida extends ActivityBase {
 

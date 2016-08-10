@@ -247,7 +247,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -Djava.awt.headless=true -Xmx1024M -Dfile.encoding=windows-1252 -Duser.country=AR -Duser.language=es -Duser.variant 
-java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_850adfbebb561bcde4359260e0b8acb4b11fc339 C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar
+java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.3.0_850adfbebb561bcde4359260e0b8acb4b11fc339 C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.3.0\jars\classes.jar
 Launcher Type: SUN_STANDARD
 
 Environment Variables:

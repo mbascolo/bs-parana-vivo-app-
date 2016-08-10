@@ -12,7 +12,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.municipalidadavda"
+        applicationId "com.paranavivo"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 5

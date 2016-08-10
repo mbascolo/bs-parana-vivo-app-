@@ -1,4 +1,4 @@
-package com.municipalidadavda.activity.global;
+package com.paranavivo.activity.global;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,13 +23,13 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.municipalidadavda.R;
-import com.municipalidadavda.modelo.notificaciones.Rubro01;
-import com.municipalidadavda.modelo.notificaciones.UsuarioPush;
-import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
-import com.municipalidadavda.rn.notificaciones.Rubro01Adapter;
-import com.municipalidadavda.rn.notificaciones.Rubro01RN;
-import com.municipalidadavda.utils.ActivityBase;
+import com.paranavivo.R;
+import com.paranavivo.modelo.notificaciones.Rubro01;
+import com.paranavivo.modelo.notificaciones.UsuarioPush;
+import com.paranavivo.rn.notificaciones.NotificacionesRN;
+import com.paranavivo.rn.notificaciones.Rubro01Adapter;
+import com.paranavivo.rn.notificaciones.Rubro01RN;
+import com.paranavivo.utils.ActivityBase;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

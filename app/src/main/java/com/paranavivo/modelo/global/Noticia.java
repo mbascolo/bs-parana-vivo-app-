@@ -1,4 +1,4 @@
-package com.municipalidadavda.modelo.global;
+package com.paranavivo.modelo.global;
 
 import android.text.Spanned;
 

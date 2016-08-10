@@ -200,7 +200,7 @@ Heap after GC invocations=7 (full 0):
 
 Deoptimization events (10 events):
 Event: 14.185 Thread 0x000000000a080800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002927b30 method=com.android.dx.cf.code.BytecodeArray.parseInstruction(ILcom/android/dx/cf/code/BytecodeArray$Visitor;)I @ 2281
-Event: 14.187 Thread 0x0000000000bdd800 Uncommon trap: reason=unreached action=reinterpret pc=0x000000000292091c method=com.android.dx.cf.direct.StdAttributeFactory.parse0(Lcom/android/dx/cf/direct/DirectClassFile;ILjava/lang/String;IILcom/android/dx/cf/iface/ParseObserver;)Lcom/android/dx/cf/if5¢ÂcÔ°.@
+Event: 14.187 Thread 0x0000000000bdd800 Uncommon trap: reason=unreached action=reinterpret pc=0x000000000292091c method=com.android.dx.cf.direct.StdAttributeFactory.parse0(Lcom/android/dx/cf/direct/DirectClassFile;ILjava/lang/String;IILcom/android/dx/cf/iface/ParseObserver;)Lcom/android/dx/cf/if5ï¿½ï¿½cÔ°.@
 Event: 15.345 Thread 0x0000000009f17800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000294b064 method=com.android.dx.cf.code.RopperMachine.run(Lcom/android/dx/cf/code/Frame;II)V @ 1024
 Event: 15.818 Thread 0x000000000a081800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000029008ec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
 Event: 15.819 Thread 0x000000000a081800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000029008ec method=com.android.dx.ssa.back.FirstFitLocalCombiningAllocator.findNextUnreservedRopReg(IILcom/android/dx/ssa/back/FirstFitLocalCombiningAllocator$Alignment;)I @ 60
@@ -268,7 +268,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -Djava.awt.headless=true -Xmx1024M -Dfile.encoding=windows-1252 -Duser.country=AR -Duser.language=es -Duser.variant 
-java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_3e611cee4d020f4c080ddcffde62948cfc0fb206 C:\Users\Claudio\StudioProjects\Municipalidadavda\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar
+java_command: com.android.dx.command.Main --dex --force-jumbo --num-threads=4 --multi-dex --output C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_3e611cee4d020f4c080ddcffde62948cfc0fb206 C:\Users\Claudio\StudioProjects\paranavivo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar
 Launcher Type: SUN_STANDARD
 
 Environment Variables:

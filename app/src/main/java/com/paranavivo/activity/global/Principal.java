@@ -1,4 +1,4 @@
-package com.municipalidadavda.activity.global;
+package com.paranavivo.activity.global;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,11 +25,11 @@ import android.widget.Toast;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.municipalidadavda.modelo.global.Noticia;
-import com.municipalidadavda.R;
-import com.municipalidadavda.rn.global.NoticiaRN;
-import com.municipalidadavda.rn.notificaciones.NotificacionesRN;
-import com.municipalidadavda.utils.ActivityBase;
+import com.paranavivo.modelo.global.Noticia;
+import com.paranavivo.R;
+import com.paranavivo.rn.global.NoticiaRN;
+import com.paranavivo.rn.notificaciones.NotificacionesRN;
+import com.paranavivo.utils.ActivityBase;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -99,7 +99,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.municipalidadavda/http/host/path")
+                Uri.parse("android-app://com.paranavivo/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -118,7 +118,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.municipalidadavda/http/host/path")
+                Uri.parse("android-app://com.paranavivo/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

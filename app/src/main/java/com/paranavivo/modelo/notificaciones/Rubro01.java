@@ -1,4 +1,4 @@
-package com.municipalidadavda.modelo.notificaciones;
+package com.paranavivo.modelo.notificaciones;
 
 /**
  * Created by Claudio on 05/06/2016.

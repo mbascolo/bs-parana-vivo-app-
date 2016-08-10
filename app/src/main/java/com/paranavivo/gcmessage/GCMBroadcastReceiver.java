@@ -1,4 +1,4 @@
-package com.municipalidadavda.gcmessage;
+package com.paranavivo.gcmessage;
 
 import android.app.Activity;
 import android.content.ComponentName;

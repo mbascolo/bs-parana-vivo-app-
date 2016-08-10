@@ -1,9 +1,9 @@
-package com.municipalidadavda.rn.notificaciones;
+package com.paranavivo.rn.notificaciones;
 
 import android.content.Context;
 
-import com.municipalidadavda.R;
-import com.municipalidadavda.modelo.notificaciones.Rubro01;
+import com.paranavivo.R;
+import com.paranavivo.modelo.notificaciones.Rubro01;
 
 import java.util.ArrayList;
 import java.util.List;

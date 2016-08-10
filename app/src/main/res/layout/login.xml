@@ -20,12 +20,12 @@
             android:layout_gravity="bottom">
 
             <ImageView
-                android:layout_width="263dp"
-                android:layout_height="53dp"
+                android:layout_width="220dp"
+                android:layout_height="71dp"
                 android:id="@+id/imageView"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/logoh"
+                android:src="@drawable/logosurubi"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp" />
@@ -144,7 +144,7 @@
                 android:id="@+id/btn_ingresar"
                 android:textSize="16dp"
                 android:textColor="#FFF"
-                android:background="#ef0000"
+                android:background="#18b10d"
                 android:onClick="onIngresar"
                 android:layout_below="@+id/logResultado"
                 android:layout_centerHorizontal="true"

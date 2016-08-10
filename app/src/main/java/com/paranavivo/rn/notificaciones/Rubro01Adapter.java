@@ -1,4 +1,4 @@
-package com.municipalidadavda.rn.notificaciones;
+package com.paranavivo.rn.notificaciones;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.municipalidadavda.R;
-import com.municipalidadavda.modelo.notificaciones.Rubro01;
+import com.paranavivo.R;
+import com.paranavivo.modelo.notificaciones.Rubro01;
 
 import java.util.ArrayList;
 

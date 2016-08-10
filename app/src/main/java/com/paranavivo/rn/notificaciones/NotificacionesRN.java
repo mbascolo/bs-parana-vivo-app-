@@ -1,4 +1,4 @@
-package com.municipalidadavda.rn.notificaciones;
+package com.paranavivo.rn.notificaciones;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,8 +9,8 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.municipalidadavda.R;
-import com.municipalidadavda.modelo.notificaciones.UsuarioPush;
+import com.paranavivo.R;
+import com.paranavivo.modelo.notificaciones.UsuarioPush;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

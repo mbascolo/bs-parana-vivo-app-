@@ -1,4 +1,4 @@
-package com.municipalidadavda.rn.global;
+package com.paranavivo.rn.global;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.municipalidadavda.modelo.global.Noticia;
+import com.paranavivo.modelo.global.Noticia;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.municipalidadavda.gcmessage;
+package com.paranavivo.gcmessage;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -11,8 +11,8 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.municipalidadavda.R;
-import com.municipalidadavda.activity.global.Principal;
+import com.paranavivo.R;
+import com.paranavivo.activity.global.Principal;
 
 
 public class GCMIntentService extends IntentService {
