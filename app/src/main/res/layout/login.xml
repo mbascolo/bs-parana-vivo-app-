@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Barrio"
+                android:text="Seleccione Perfil"
                 android:id="@+id/textView4"
                 android:layout_below="@+id/textNombre"
                 android:layout_alignLeft="@+id/textNombre"
@@ -103,7 +103,8 @@
                 android:textIsSelectable="false"
                 android:layout_gravity="left|center_horizontal"
                 android:textSize="16dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp" />
 
             <Spinner
                 android:id="@+id/dynamic_spinner"
