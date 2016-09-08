@@ -201,7 +201,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                     for(Noticia item: noticias){
 
-                        Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+                        Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
                         item.setSpanned(s);
                     }
                 }
@@ -271,8 +271,8 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             //Obteniendo instancia de la Tarea en la posición actual
             Noticia item = getItem(position);
 
-            Id.setText(item.getID());
-            postTitle.setText(item.getPost_title());
+            Id.setText(item.getId());
+            postTitle.setText(item.getTitulo());
             postContent.setText(item.getSpanned());
 
 
@@ -308,7 +308,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                 try {
 
-                    Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+                    Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
                     item.setSpanned(s);
 
                 } catch (Exception e) {

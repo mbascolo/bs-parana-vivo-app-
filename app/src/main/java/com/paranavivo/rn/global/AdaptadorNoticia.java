@@ -55,12 +55,12 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
         //Obteniendo instancia de la Tarea en la posición actual
         Noticia item = getItem(position);
 
-        Id.setText(item.getID());
-        postTitle.setText(item.getPost_title());
+        Id.setText(item.getId());
+        postTitle.setText(item.getTitulo());
 
-        Log.d("HTML",item.getPost_content());
+        Log.d("HTML",item.getDescripcion());
 
-        Spanned s = Html.fromHtml(item.getPost_content(),getImageHTML(),null);
+        Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
 
         postContent.setText(s);
 
