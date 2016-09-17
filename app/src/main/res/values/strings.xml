@@ -1,12 +1,11 @@
 <resources>
-    <string name="app_name">Gobierno de Avellaneda</string>
+    <string name="app_name">Asociación Civil Paraná Vivo</string>
 
     //ID proyecto
     <string name="NROCTA_SERVER_PUSH">00001</string>
     <string name="PROJECT_ID">556085573505</string>
     <string name="URL_REST_SERVER">http://bsgestion.com.ar/bs-push/rest/</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Principal</string>
     <string name="title_activity_listado_posts">ListadoPosts</string>
     <string name="title_activity_login">LoginActivity</string>

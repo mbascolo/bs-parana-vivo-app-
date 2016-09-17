@@ -14,10 +14,10 @@ public class Noticia {
     public Noticia(){
     }
 
-    public Noticia(String ID, String post_title, String post_content) {
-        this.id = ID;
-        this.titulo = post_title;
-        this.descripcion = post_content;
+    public Noticia(String id, String titulo, String descripcion) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
         //this.pathImagenBannerMiniatura = pathImagenBannerMiniatura;
     }
 

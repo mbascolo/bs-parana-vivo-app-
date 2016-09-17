@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Leer noticias"
         android:id="@+id/btn_leer_noticias"
-        android:background="#ef0000"
+        android:background="#0d7f00"
         android:textColor="#FFF"
         android:onClick="leerNoticias"
         android:nestedScrollingEnabled="false"
