@@ -37,15 +37,15 @@
             android:name=".activity.seguridad.Login"
             android:label="Ingreso"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.global.Principal"
             android:label="Asociación Civil Paraná Vivo"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.global.Perfil"
             android:label="Asociación Civil Paraná Vivo"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -66,7 +66,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.seguridad.Registro"></activity>
+        <activity android:name=".activity.seguridad.Registro" />
+        <activity android:name=".activity.global.SinConexion"></activity>
     </application>
 
 </manifest>

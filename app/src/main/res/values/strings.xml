@@ -13,9 +13,11 @@
     <string name="PROPERTY_ID_REGISTRO_GCM">id_registro_gcm</string>
     <string name="PROPERTY_APP_VERSION">appVersion</string>
     <string name="PROPERTY_TIEMPO_CADUCIDAD">onServerExpirationTimeMs</string>
+    <string name="PROPERTY_USUARIO">usuario</string>
+    <string name="PROPERTY_PASSWORD">password</string>
     <string name="PROPERTY_NOMBRE">nombre</string>
     <string name="PROPERTY_APELLIDO">apellido</string>
-    <string name="PROPERTY_BARRIO">password</string>
+    <string name="PROPERTY_TIPO">tipo_usuario</string>
     <string name="PROPERTY_LOGUEADO">logueado</string>
     <string name="title_activity_bienvenida">Bienvenida</string>
 

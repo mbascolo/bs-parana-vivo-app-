@@ -48,7 +48,7 @@ public class Bienvenida extends ActivityBase {
 
         super.onResume();
 
-        prefs = getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         logueado = prefs.getBoolean(getResources().getString(R.string.PROPERTY_LOGUEADO), false);
 
         if(!logueado){
@@ -58,7 +58,7 @@ public class Bienvenida extends ActivityBase {
 
     private void borrarPreferencias(){
 
-        prefs = context.getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(context.getResources().getString(R.string.PROPERTY_LOGUEADO), false);
         editor.commit();

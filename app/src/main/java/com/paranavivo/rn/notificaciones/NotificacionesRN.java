@@ -49,9 +49,27 @@ public class NotificacionesRN {
         cargarPreferencias();
     }
 
+    public void verificarRegistroGCM(){
+
+        Log.d("verificarRegistroGCM", "verificarRegistroGCM");
+
+        gcm = GoogleCloudMessaging.getInstance(context);
+
+        //Obtenemos el Registration ID guardado
+        regId = getRegistrationId();
+
+        //Si no disponemos de Registration ID comenzamos el registro
+        if (regId.equals("")){
+
+            TareaRegistroGCM tarea = new TareaRegistroGCM();
+            tarea.execute();
+        }
+
+    }
+
     private void cargarPreferencias(){
 
-        prefs = context.getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         versionRegistrada = prefs.getInt(context.getResources().getString(R.string.PROPERTY_APP_VERSION), Integer.MIN_VALUE);
         expirationTime   = prefs.getLong(context.getResources().getString(R.string.PROPERTY_TIEMPO_CADUCIDAD), -1);
     }
@@ -164,7 +182,7 @@ public class NotificacionesRN {
 
     private void setRegistrationId(){
 
-        SharedPreferences prefs = context.getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         int appVersion = getAppVersion(context);
 
         SharedPreferences.Editor editor = prefs.edit();

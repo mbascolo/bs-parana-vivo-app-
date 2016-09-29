@@ -371,7 +371,7 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
 
     private void setRegistrationId(){
 
-        SharedPreferences prefs = context.getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         int appVersion = getAppVersion(context);
 
         SharedPreferences.Editor editor = prefs.edit();
@@ -443,7 +443,7 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
 
     private void cargarPreferencias(){
 
-        prefs = context.getSharedPreferences("MunicipalidadAvellaneda", Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
         versionRegistrada = prefs.getInt(context.getResources().getString(R.string.PROPERTY_APP_VERSION), Integer.MIN_VALUE);
         expirationTime   = prefs.getLong(context.getResources().getString(R.string.PROPERTY_TIEMPO_CADUCIDAD), -1);
     }
