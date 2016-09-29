@@ -2,8 +2,8 @@
     <string name="app_name">Asociación Civil Paraná Vivo</string>
 
     //ID proyecto
-    <string name="NROCTA_SERVER_PUSH">00001</string>
-    <string name="PROJECT_ID">556085573505</string>
+    <string name="NROCTA_SERVER_PUSH">00002</string>
+    <string name="PROJECT_ID">112752394683</string>
     <string name="URL_REST_SERVER">http://bsgestion.com.ar/bs-push/rest/</string>
 
     <string name="action_settings">Principal</string>
