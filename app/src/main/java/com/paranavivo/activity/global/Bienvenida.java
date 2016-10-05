@@ -48,7 +48,7 @@ public class Bienvenida extends ActivityBase {
 
         super.onResume();
 
-        prefs = getSharedPreferences("context.getResources().getString(R.string.PROJECT_ID)", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences(context.getResources().getString(R.string.PROJECT_ID), Context.MODE_PRIVATE);
         logueado = prefs.getBoolean(getResources().getString(R.string.PROPERTY_LOGUEADO), false);
 
         if(!logueado){

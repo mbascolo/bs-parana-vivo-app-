@@ -24,11 +24,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.paranavivo.R;
-import com.paranavivo.modelo.notificaciones.Rubro01;
-import com.paranavivo.modelo.notificaciones.UsuarioPush;
+import com.paranavivo.modelo.seguridad.TipoUsuario;
+import com.paranavivo.modelo.seguridad.Usuario;
 import com.paranavivo.rn.notificaciones.NotificacionesRN;
-import com.paranavivo.rn.notificaciones.Rubro01Adapter;
-import com.paranavivo.rn.notificaciones.Rubro01RN;
+import com.paranavivo.rn.seguridad.TipoUsuarioAdapter;
+import com.paranavivo.rn.seguridad.TipoUsuarioRN;
 import com.paranavivo.utils.ActivityBase;
 
 import org.apache.http.HttpResponse;
@@ -60,15 +60,15 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
     private TextView resultado;
     private ProgressDialog pd;
     private NotificacionesRN notificacionesRN;
-    private Rubro01RN rubro01RN;
+    private TipoUsuarioRN rubro01RN;
     SharedPreferences prefs;
     private GoogleCloudMessaging gcm;
     private Context context;
-    private UsuarioPush usuarioPush;
+    private Usuario usuarioPush;
     int versionRegistrada;
     long expirationTime;
 
-    private Rubro01[]  rubros;
+    private TipoUsuario[]  rubros;
 
     private boolean logueado;
 
@@ -80,7 +80,7 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
         setContentView(R.layout.perfil);
 
         notificacionesRN = new NotificacionesRN(this);
-        rubro01RN = new Rubro01RN(this);
+        rubro01RN = new TipoUsuarioRN(this);
 
         context = this;
         cargarPreferencias();
@@ -90,9 +90,9 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
 
 
         // Construimos la fuente de datos
-        ArrayList<Rubro01> rubros01 = rubro01RN.getLista();
+        ArrayList<TipoUsuario> rubros01 = rubro01RN.getLista();
         // Creamos el adaptador para convertir a las vistas
-        Rubro01Adapter adapter = new Rubro01Adapter(this, rubros01);
+        TipoUsuarioAdapter adapter = new TipoUsuarioAdapter(this, rubros01);
 
         dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
         dynamicSpinner.setAdapter(adapter);
@@ -105,7 +105,7 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Log.v("item", ((Rubro01) parent.getItemAtPosition(position)).toString());
+                Log.v("item", ((TipoUsuario) parent.getItemAtPosition(position)).toString());
 
                 //Rubro01 r = (Rubro01) parent.getItemAtPosition(position);
                 //usuarioPush.setCodRubro01(r.getCodigo());
@@ -186,12 +186,11 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
 
         resultado = (TextView) findViewById(R.id.logResultado);
 
-        usuarioPush = new UsuarioPush();
+        usuarioPush = new Usuario();
         usuarioPush.setEmail(email.getText().toString());
         usuarioPush.setNombre(nombre.getText().toString());
         usuarioPush.setApellido(apellido.getText().toString());
-        usuarioPush.setCodRubro01(((Rubro01)dynamicSpinner.getSelectedItem()).getCodigo());
-        usuarioPush.setNrocta(getResources().getString(R.string.NROCTA_SERVER_PUSH));
+        usuarioPush.setTipo(((TipoUsuario)dynamicSpinner.getSelectedItem()));
 
         verificarRegistroGCM(usuarioPush);
     }
@@ -237,7 +236,7 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void verificarRegistroGCM(UsuarioPush u){
+    public void verificarRegistroGCM(Usuario u){
 
         usuarioPush = u;
 
@@ -399,11 +398,10 @@ public class Perfil extends ActivityBase implements View.OnClickListener {
             JSONObject registro = new JSONObject();
             registro.put("nombre", usuarioPush.getNombre());
             registro.put("apellido"   ,usuarioPush.getApellido());
-            registro.put("nrocta", usuarioPush.getNrocta());
             registro.put("email", usuarioPush.getEmail());
             registro.put("imei", usuarioPush.getImei());
             registro.put("idRegistro", usuarioPush.getIdRegistro());
-            registro.put("codRubro01", usuarioPush.getCodRubro01());
+            registro.put("tipoUsuario", usuarioPush.getTipo());
 
             StringEntity entity = new StringEntity(registro.toString());
             httpPut.setEntity(entity);

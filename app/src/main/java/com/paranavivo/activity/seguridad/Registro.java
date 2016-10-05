@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,11 +23,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.paranavivo.R;
-import com.paranavivo.modelo.notificaciones.Rubro01;
-import com.paranavivo.modelo.notificaciones.UsuarioPush;
+import com.paranavivo.modelo.seguridad.TipoUsuario;
+import com.paranavivo.modelo.seguridad.Usuario;
 import com.paranavivo.rn.notificaciones.NotificacionesRN;
-import com.paranavivo.rn.notificaciones.Rubro01Adapter;
-import com.paranavivo.rn.notificaciones.Rubro01RN;
+import com.paranavivo.rn.seguridad.TipoUsuarioAdapter;
+import com.paranavivo.rn.seguridad.TipoUsuarioRN;
 import com.paranavivo.utils.ActivityBase;
 
 import org.apache.http.HttpResponse;
@@ -47,12 +46,33 @@ import java.util.Locale;
 
 public class Registro extends ActivityBase implements View.OnClickListener {
 
+    private static final String URL_REGISTRO = "usuario/registrar";
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    public static final long EXPIRATION_TIME_MS = 1000 * 3600 * 24 * 7;
+    private TelephonyManager manager;
+    private Button btnIngresar;
+    private Spinner dynamicSpinner;
+    private EditText nombre;
+    private EditText apellido;
+    private EditText email;
+    private TextView resultado;
+    private boolean logueado;
+    private ProgressDialog pd;
+    private NotificacionesRN notificacionesRN;
+    private TipoUsuarioRN tipoUsuarioRN;
+    SharedPreferences prefs;
+    private GoogleCloudMessaging gcm;
+    private Context context;
+    private Usuario usuarioPush;
+    int versionRegistrada;
+    long expirationTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro);
         notificacionesRN = new NotificacionesRN(this);
-        rubro01RN = new Rubro01RN(this);
+        tipoUsuarioRN = new TipoUsuarioRN(this);
 
         context = this;
         cargarPreferencias();
@@ -62,32 +82,12 @@ public class Registro extends ActivityBase implements View.OnClickListener {
 
 
         // Construimos la fuente de datos
-        ArrayList<Rubro01> rubros01 = rubro01RN.getLista();
+        ArrayList<TipoUsuario> tiposUsuario = tipoUsuarioRN.getLista();
         // Creamos el adaptador para convertir a las vistas
-        Rubro01Adapter adapter = new Rubro01Adapter(this, rubros01);
+        TipoUsuarioAdapter adapter = new TipoUsuarioAdapter(this, tiposUsuario);
 
         dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
         dynamicSpinner.setAdapter(adapter);
-
-        //adapter.setDropDownViewResource(R.layout.login_spinner_dropdown_item);
-
-
-
-        dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", ((Rubro01) parent.getItemAtPosition(position)).toString());
-
-                //Rubro01 r = (Rubro01) parent.getItemAtPosition(position);
-                //usuarioPush.setCodRubro01(r.getCodigo());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
 
         nombre = (EditText) findViewById(R.id.logNombre);
         apellido = (EditText) findViewById(R.id.logApellido);
@@ -158,12 +158,11 @@ public class Registro extends ActivityBase implements View.OnClickListener {
 
         resultado = (TextView) findViewById(R.id.logResultado);
 
-        usuarioPush = new UsuarioPush();
+        usuarioPush = new Usuario();
         usuarioPush.setEmail(email.getText().toString());
         usuarioPush.setNombre(nombre.getText().toString());
         usuarioPush.setApellido(apellido.getText().toString());
-        usuarioPush.setCodRubro01(((Rubro01)dynamicSpinner.getSelectedItem()).getCodigo());
-        usuarioPush.setNrocta(getResources().getString(R.string.NROCTA_SERVER_PUSH));
+        usuarioPush.setTipo(((TipoUsuario)dynamicSpinner.getSelectedItem()));
 
         verificarRegistroGCM(usuarioPush);
     }
@@ -209,7 +208,7 @@ public class Registro extends ActivityBase implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void verificarRegistroGCM(UsuarioPush u){
+    public void verificarRegistroGCM(Usuario u){
 
         usuarioPush = u;
 
@@ -371,11 +370,10 @@ public class Registro extends ActivityBase implements View.OnClickListener {
             JSONObject registro = new JSONObject();
             registro.put("nombre", usuarioPush.getNombre());
             registro.put("apellido"   ,usuarioPush.getApellido());
-            registro.put("nrocta", usuarioPush.getNrocta());
             registro.put("email", usuarioPush.getEmail());
             registro.put("imei", usuarioPush.getImei());
             registro.put("idRegistro", usuarioPush.getIdRegistro());
-            registro.put("codRubro01", usuarioPush.getCodRubro01());
+            registro.put("tipo", usuarioPush.getTipo());
 
             StringEntity entity = new StringEntity(registro.toString());
             httpPut.setEntity(entity);

@@ -178,7 +178,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
             try {
 
-                URL url = new URL("http://www.bsgestion.com.ar/surubi/rest/appnoti/lista");
+                URL url = new URL("http://www.surubi.com/surubi/rest/appnoti/lista");
 
                 // Establecer la conexión
                 con = (HttpURLConnection) url.openConnection();

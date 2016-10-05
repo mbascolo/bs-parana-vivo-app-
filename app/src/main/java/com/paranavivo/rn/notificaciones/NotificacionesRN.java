@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.paranavivo.R;
-import com.paranavivo.modelo.notificaciones.UsuarioPush;
+import com.paranavivo.modelo.seguridad.Usuario;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -39,7 +39,7 @@ public class NotificacionesRN {
     SharedPreferences prefs;
     private GoogleCloudMessaging gcm;
     private Context context;
-    private UsuarioPush usuarioPush;
+    private Usuario usuarioPush;
     int versionRegistrada;
     long expirationTime;
 
@@ -56,7 +56,7 @@ public class NotificacionesRN {
         gcm = GoogleCloudMessaging.getInstance(context);
 
         //Obtenemos el Registration ID guardado
-        regId = getRegistrationId();
+        String regId = getRegistrationId();
 
         //Si no disponemos de Registration ID comenzamos el registro
         if (regId.equals("")){
@@ -64,7 +64,6 @@ public class NotificacionesRN {
             TareaRegistroGCM tarea = new TareaRegistroGCM();
             tarea.execute();
         }
-
     }
 
     private void cargarPreferencias(){
@@ -74,7 +73,7 @@ public class NotificacionesRN {
         expirationTime   = prefs.getLong(context.getResources().getString(R.string.PROPERTY_TIEMPO_CADUCIDAD), -1);
     }
 
-    public void verificarRegistroGCM(UsuarioPush u){
+    public void verificarRegistroGCM(Usuario u){
 
         usuarioPush = u;
 
@@ -91,7 +90,6 @@ public class NotificacionesRN {
             TareaRegistroGCM tarea = new TareaRegistroGCM();
             tarea.execute();
         }
-
     }
 
     private class TareaRegistroGCM extends AsyncTask<String,Integer,String>{
@@ -209,10 +207,9 @@ public class NotificacionesRN {
             JSONObject registro = new JSONObject();
             registro.put("nombre", usuarioPush.getNombre());
             registro.put("apellido"   ,usuarioPush.getApellido());
-            registro.put("nrocta", usuarioPush.getNrocta());
             registro.put("imei", usuarioPush.getImei());
             registro.put("idRegistro", usuarioPush.getIdRegistro());
-            registro.put("codRubro01", usuarioPush.getCodRubro01());
+
 
             StringEntity entity = new StringEntity(registro.toString());
             httpPut.setEntity(entity);
