@@ -47,7 +47,7 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
         }
 
         //Obteniendo instancias de los elementos
-        TextView Id = (TextView)v.findViewById(R.id.ID);
+        //TextView Id = (TextView)v.findViewById(R.id.ID);
         TextView postTitle = (TextView)v.findViewById(R.id.postTitle);
         TextView postContent = (TextView)v.findViewById(R.id.postContent);
 
@@ -55,7 +55,7 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
         //Obteniendo instancia de la Tarea en la posición actual
         Noticia item = getItem(position);
 
-        Id.setText(item.getId());
+        //Id.setText(item.getId());
         postTitle.setText(item.getTitulo());
 
         Log.d("HTML",item.getDescripcion());

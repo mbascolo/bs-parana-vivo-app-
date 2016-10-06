@@ -22,18 +22,6 @@
         android:layout_below="@+id/especieAnimal"
         android:scaleType="centerCrop" />-->
 
-    <TextView
-        android:id="@+id/ID"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:hint="id"
-        android:layout_alignTop="@+id/especieAnimal"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/especieAnimal" />
-
 
     <TextView
         android:id="@+id/postTitle"
@@ -44,11 +32,11 @@
         android:focusable="true"
         android:hint="TITULO"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/ID"
         android:layout_alignParentRight="true"
         android:textColor="#dbb01318"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/especieAnimal" />
 
     <TextView
         android:id="@+id/postContent"

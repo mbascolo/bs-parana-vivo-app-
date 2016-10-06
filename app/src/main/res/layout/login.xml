@@ -50,6 +50,40 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:id="@+id/logNombre"
+                android:layout_below="@+id/textNombre"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:singleLine="true"
+                android:nextFocusDown="@+id/logApellido"
+                android:textColorHint="#3b3b3b"
+                android:imeOptions="actionNext"
+                android:hint="Nombre"
+                android:textSize="16dp"
+                android:textColor="#FFF" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/logApellido"
+                android:layout_below="@+id/textNombre"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:singleLine="true"
+                android:nextFocusDown="@+id/logApellido"
+                android:textColorHint="#3b3b3b"
+                android:imeOptions="actionDone"
+                android:hint="Apellido"
+                android:textSize="16dp"
+                android:textColor="#3b3b3b" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:id="@+id/logEmail"
                 android:layout_below="@+id/textApellido"
                 android:layout_alignParentRight="true"
@@ -58,32 +92,49 @@
                 android:layout_alignParentStart="true"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
+                android:textColorHint="#3b3b3b"
                 android:hint="Email"
                 android:layout_marginBottom="10dp"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:textColor="#3b3b3b" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:inputType="textPassword"
-                android:id="@+id/logPassword"
-                android:layout_gravity="center_horizontal"
-                android:hint="Password"
-                android:textSize="16dp" />
-
-            <!--   <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/logResultado"
-                android:layout_below="@+id/dynamic_spinner"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:text="Tipo de usuario"
+                android:id="@+id/textView4"
+                android:layout_below="@+id/textNombre"
+                android:layout_alignLeft="@+id/textNombre"
+                android:layout_alignStart="@+id/textNombre"
+                android:textIsSelectable="false"
+                android:layout_gravity="left|center_horizontal"
+                android:textSize="16dp"
+                android:layout_marginBottom="10dp" />
+
+            <Spinner
+                android:id="@+id/dynamic_spinner"
+                android:textSize="20dp"
+                android:textColor="#3b3b3b"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textAlignment="center"
-                android:textColor="#07117d"
-                android:textSize="20dp"
-                android:textStyle="bold" />-->
+                android:layout_below="@+id/logApellido"
+                android:layout_marginBottom="5dp" />
+
+            <!--   <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/logResultado"
+                   android:layout_below="@+id/dynamic_spinner"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:textAlignment="center"
+                   android:textColor="#07117d"
+                   android:textSize="20dp"
+                   android:textStyle="bold" />-->
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +147,7 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:text="Ingresar"
-                android:id="@+id/btn_ingresar"
+                android:id="@+id/btnIngresar"
                 android:textSize="16dp"
                 android:textColor="#FFF"
                 android:background="#18b10d"
@@ -104,25 +155,10 @@
                 android:layout_below="@+id/logResultado"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="bottom|center_horizontal" />
+
         </LinearLayout>
 
     </LinearLayout>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:text="Registrarme" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:text="Olvidé mis datos" />
 
 
 </RelativeLayout>

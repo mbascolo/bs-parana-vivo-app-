@@ -1,23 +1,26 @@
-package com.paranavivo.modelo.seguridad;
+package com.paranavivo.modelo.notificaciones;
 
 /**
- * Created by Claudio on 05/10/2016.
+ * Created by Claudio on 05/06/2016.
  */
-public class TipoUsuario {
+public class Rubro01 {
 
-    private Integer id;
+    private int id;
     private String descripcion;
 
-    public TipoUsuario(Integer id, String descripcion) {
-        this.id = id;
+    public Rubro01() {
+    }
+
+    public Rubro01( int codigo, String descripcion) {
+        this.id = codigo;
         this.descripcion = descripcion;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

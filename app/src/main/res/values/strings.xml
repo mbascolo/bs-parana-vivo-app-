@@ -4,7 +4,7 @@
     //ID proyecto
     <string name="NROCTA_SERVER_PUSH">00002</string>
     <string name="PROJECT_ID">112752394683</string>
-    <string name="URL_REST_SERVER">http://www.surubi.com/surubi/rest/</string>
+    <string name="URL_REST_SERVER">http://intercapweb.com.ar:8086/surubi/rest/</string>
     <!--
         <string name="URL_REST_SERVER">http://www.surubi.com/surubi/rest/</string>
     -->

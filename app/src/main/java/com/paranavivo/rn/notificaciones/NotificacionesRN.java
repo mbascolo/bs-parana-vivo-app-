@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.paranavivo.R;
-import com.paranavivo.modelo.seguridad.Usuario;
+import com.paranavivo.modelo.notificaciones.UsuarioPush;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -39,7 +39,7 @@ public class NotificacionesRN {
     SharedPreferences prefs;
     private GoogleCloudMessaging gcm;
     private Context context;
-    private Usuario usuarioPush;
+    private UsuarioPush usuarioPush;
     int versionRegistrada;
     long expirationTime;
 
@@ -73,7 +73,7 @@ public class NotificacionesRN {
         expirationTime   = prefs.getLong(context.getResources().getString(R.string.PROPERTY_TIEMPO_CADUCIDAD), -1);
     }
 
-    public void verificarRegistroGCM(Usuario u){
+    public void verificarRegistroGCM(UsuarioPush u){
 
         usuarioPush = u;
 
@@ -164,7 +164,7 @@ public class NotificacionesRN {
         return registrationId;
     }
 
-    private static int getAppVersion(Context context)
+    public static int getAppVersion(Context context)
     {
         try
         {
