@@ -388,9 +388,6 @@ public class Login extends ActivityBase implements View.OnClickListener {
             HttpResponse resp = httpClient.execute(httpPut);
             String respStr = EntityUtils.toString(resp.getEntity());
 
-
-            Log.d("Respuesta servidor:", "---------------"+respStr);
-
             if(respStr.equals("true")){
                 Log.d("registroServidor", "Registro exitoso");
             }else {
