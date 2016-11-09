@@ -48,21 +48,21 @@ public class AdaptadorNoticia extends ArrayAdapter<Noticia> {
 
         //Obteniendo instancias de los elementos
         //TextView Id = (TextView)v.findViewById(R.id.ID);
-        TextView postTitle = (TextView)v.findViewById(R.id.postTitle);
-        TextView postContent = (TextView)v.findViewById(R.id.postContent);
+        TextView txtTitulo = (TextView)v.findViewById(R.id.txtTitulo);
+        TextView txtContenido = (TextView)v.findViewById(R.id.txtContenido);
 
 
         //Obteniendo instancia de la Tarea en la posición actual
         Noticia item = getItem(position);
 
         //Id.setText(item.getId());
-        postTitle.setText(item.getTitulo());
+        txtTitulo.setText(item.getTitulo());
 
-        Log.d("HTML",item.getDescripcion());
+        Log.d("HTML",item.getContenido());
 
-        Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
+        Spanned s = Html.fromHtml(item.getContenido(),getImageHTML(),null);
 
-        postContent.setText(s);
+        txtContenido.setText(s);
 
         return v;
 

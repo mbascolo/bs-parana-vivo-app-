@@ -3,7 +3,6 @@ package com.paranavivo.activity.global;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -190,7 +188,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                 if (statusCode != 200) {
                     noticias = new ArrayList<>();
-                    noticias.add(new Noticia("Error", null, null));
+                    noticias.add(new Noticia("Error", null, null, null));
 
                 } else {
 
@@ -201,7 +199,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                     for(Noticia item: noticias){
 
-                        Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
+                        Spanned s = Html.fromHtml(item.getContenido(),getImageHTML(),null);
                         item.setSpanned(s);
                     }
                 }
@@ -264,16 +262,18 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
             //Obteniendo instancias de los elementos
             //TextView Id = (TextView)v.findViewById(R.id.ID);
-            TextView postTitle = (TextView)v.findViewById(R.id.postTitle);
-            TextView postContent = (TextView)v.findViewById(R.id.postContent);
+            TextView txtTitulo = (TextView)v.findViewById(R.id.txtTitulo);
+            TextView txtSubtitulo = (TextView)v.findViewById(R.id.txtSubtitulo);
+            TextView txtContenido = (TextView)v.findViewById(R.id.txtContenido);
 
 
             //Obteniendo instancia de la Tarea en la posición actual
             Noticia item = getItem(position);
 
             //Id.setText(item.getId());
-            postTitle.setText(item.getTitulo());
-            postContent.setText(item.getSpanned());
+            txtTitulo.setText(item.getTitulo());
+            txtSubtitulo.setText(item.getSubtitulo());
+            txtContenido.setText(item.getSpanned());
 
             return v;
 
@@ -305,7 +305,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                 try {
 
-                    Spanned s = Html.fromHtml(item.getDescripcion(),getImageHTML(),null);
+                    Spanned s = Html.fromHtml(item.getContenido(),getImageHTML(),null);
                     item.setSpanned(s);
 
                 } catch (Exception e) {
