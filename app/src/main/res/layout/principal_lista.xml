@@ -3,49 +3,28 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
     <TextView
-        android:id="@+id/especieAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:textSize="24sp" />
-
-    <!--<ImageView
-        android:id="@+id/imagenAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/especieAnimal"
-        android:scaleType="centerCrop" />-->
-
-
-    <TextView
-        android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:hint="TITULO"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:textColor="#dbb01318"
+        android:text="Titulo "
+        android:id="@+id/txtTitulo"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textColor="#517df6"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_alignTop="@+id/especieAnimal" />
+        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/txtSubtitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:hint="CONTENIDO"
+        android:clickable="false"
+        android:focusable="false"
+        android:hint="-"
         android:layout_below="@+id/txtTitulo"
         android:layout_alignParentRight="true"
         android:textSize="18dp"
@@ -53,17 +32,20 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/txtContenido"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:hint="CONTENIDO"
-        android:textSize="18dp"
-        android:lineSpacingExtra="8dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="+ Info"
+        android:id="@+id/textView3"
         android:layout_below="@+id/txtSubtitulo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textStyle="bold"
+        android:paddingEnd="5dp"
+        android:textSize="17dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>

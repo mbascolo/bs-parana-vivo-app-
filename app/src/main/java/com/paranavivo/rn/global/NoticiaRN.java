@@ -30,25 +30,31 @@ public class NoticiaRN {
         this.context = context;
     }
 
-    public List<Noticia> leerFlujoJson(InputStream in) throws IOException {
+    public List<Noticia> leerFlujoJson(InputStream in) {
         // Nueva instancia de la clase Gson
         Gson gson = new Gson();
-
-        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         List<Noticia> noticias = new ArrayList<>();
 
-        // Iniciar el array
-        reader.beginArray();
+        try{
+            JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+            // Iniciar el array
+            reader.beginArray();
 
-        while (reader.hasNext()) {
-            // Lectura de objetos
-            Noticia noticia = gson.fromJson(reader, Noticia.class);
-            noticias.add(noticia);
+            while (reader.hasNext()) {
+                // Lectura de objetos
+                Noticia noticia = gson.fromJson(reader, Noticia.class);
+                noticias.add(noticia);
+
+                System.err.println("Noticia " + noticia.getTitulo());
+            }
+
+            reader.endArray();
+            reader.close();
+
+        }catch (Exception e){
+            System.err.println("Error "+e );
         }
 
-
-        reader.endArray();
-        reader.close();
         return noticias;
     }
 

@@ -8,8 +8,10 @@ import android.text.Spanned;
 public class Noticia {
     private String id;
     private String titulo;
-    private String subtitulo;
-    private String contenido;
+    //Subtítulo
+    private String descripcion;
+    //Contenido
+    private String detalle;
     private Spanned spanned;
 
     public Noticia(){
@@ -18,8 +20,8 @@ public class Noticia {
     public Noticia(String id, String titulo, String subtitulo, String contenido) {
         this.id = id;
         this.titulo = titulo;
-        this.subtitulo = subtitulo;
-        this.contenido = contenido;
+        this.descripcion = subtitulo;
+        this.detalle = contenido;
         //this.pathImagenBannerMiniatura = pathImagenBannerMiniatura;
     }
 
@@ -39,20 +41,20 @@ public class Noticia {
         this.titulo = titulo;
     }
 
-    public String getSubtitulo() {
-        return subtitulo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setSubtitulo(String subtitulo) {
-        this.subtitulo = subtitulo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getContenido() {
-        return contenido;
+    public String getDetalle() {
+        return detalle;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public Spanned getSpanned() {

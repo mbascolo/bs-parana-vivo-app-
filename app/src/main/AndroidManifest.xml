@@ -52,20 +52,22 @@
             android:value="@integer/google_play_services_version" />
 
         <service
-            android:name="com.paranavivo.gcmessage.GCMIntentService"
+            android:name=".gcmessage.GCMIntentService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name="com.paranavivo.gcmessage.GCMBroadcastReceiver"
+            android:name=".gcmessage.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.beansfot" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.global.SinConexion"></activity>
+        <activity android:name=".activity.global.SinConexion" />
+        <activity android:name=".activity.global.NoticiaSeleccionada"></activity>
     </application>
 
 </manifest>

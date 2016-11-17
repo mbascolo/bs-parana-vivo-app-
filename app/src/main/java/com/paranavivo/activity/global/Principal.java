@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -188,9 +189,11 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                 if (statusCode != 200) {
                     noticias = new ArrayList<>();
-                    noticias.add(new Noticia("Error", null, null, null));
+                    noticias.add(new Noticia("Error", "Noticias Surubi", "En este momento no tenemos noticias disponibles", ""));
 
                 } else {
+
+                    System.err.println("PASA POR ACAAAA");
 
                     // Parsear el flujo con formato JSON
                     InputStream in = new BufferedInputStream(con.getInputStream());
@@ -199,13 +202,14 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                     for(Noticia item: noticias){
 
-                        Spanned s = Html.fromHtml(item.getContenido(),getImageHTML(),null);
+                        Spanned s = Html.fromHtml(item.getDetalle(),getImageHTML(),null);
                         item.setSpanned(s);
                     }
                 }
 
             } catch (Exception e) {
-                Log.d("Error cargando noticias",e.getMessage());
+                Log.d("Error parseando noticias noticias",e.getMessage());
+                System.err.println("Error "+e);
 
             } finally {
                 con.disconnect();
@@ -214,17 +218,31 @@ public class Principal extends ActivityBase implements View.OnClickListener {
         }
 
         @Override
-        protected void onPostExecute(List<Noticia> noticias) {
+        protected void onPostExecute(final List<Noticia> noticias) {
             /*
             Asignar los objetos de Json parseados al adaptador
              */
             if (noticias != null) {
                 adaptador = new AdaptadorNoticia(context, noticias);
                 lista.setAdapter(adaptador);
+
+                lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+
+                        Intent intent = new Intent(context, NoticiaSeleccionada.class);
+                        intent.putExtra("NOT_TITULO", noticias.get(position).getTitulo());
+                        intent.putExtra("NOT_DESCRIPCION", noticias.get(position).getDescripcion());
+                        intent.putExtra("NOT_DETALLE", noticias.get(position).getDetalle());
+
+                        startActivity(intent);
+                    }
+                });
+
             } else {
                 Toast.makeText(
                         context,
-                        "Ocurrió un error de Parsing Json",
+                        "No es posible mostrar las noticias en estos momentos",
                         Toast.LENGTH_SHORT)
                         .show();
             }
@@ -261,19 +279,20 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             }
 
             //Obteniendo instancias de los elementos
-            //TextView Id = (TextView)v.findViewById(R.id.ID);
             TextView txtTitulo = (TextView)v.findViewById(R.id.txtTitulo);
             TextView txtSubtitulo = (TextView)v.findViewById(R.id.txtSubtitulo);
-            TextView txtContenido = (TextView)v.findViewById(R.id.txtContenido);
+            //TextView txtContenido = (TextView)v.findViewById(R.id.txtContenido);
 
 
             //Obteniendo instancia de la Tarea en la posición actual
             Noticia item = getItem(position);
 
+            System.err.println(item.getDescripcion());
+
             //Id.setText(item.getId());
             txtTitulo.setText(item.getTitulo());
-            txtSubtitulo.setText(item.getSubtitulo());
-            txtContenido.setText(item.getSpanned());
+            txtSubtitulo.setText(item.getDescripcion());
+            //txtContenido.setText(item.getSpanned());
 
             return v;
 
@@ -305,7 +324,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
 
                 try {
 
-                    Spanned s = Html.fromHtml(item.getContenido(),getImageHTML(),null);
+                    Spanned s = Html.fromHtml(item.getDetalle(),getImageHTML(),null);
                     item.setSpanned(s);
 
                 } catch (Exception e) {

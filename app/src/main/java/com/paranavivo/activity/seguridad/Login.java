@@ -281,7 +281,7 @@ public class Login extends ActivityBase implements View.OnClickListener {
                 {
                     setRegistrationId();
                 }else{
-                    //Log.d("No es posible registrarse", "Hubo un error al registrarse");
+                    Log.d("No es posible registrarse", "Hubo un error al registrarse");
                     //Toast.makeText(context, "No es posible registrarse en este momento", Toast.LENGTH_LONG).show();
                 }
             }
@@ -358,6 +358,8 @@ public class Login extends ActivityBase implements View.OnClickListener {
         editor.putLong(context.getResources().getString(R.string.PROPERTY_TIEMPO_CADUCIDAD), System.currentTimeMillis() + EXPIRATION_TIME_MS);
         editor.putBoolean(context.getResources().getString(R.string.PROPERTY_LOGUEADO), true);
         editor.commit();
+
+        System.err.println("Guardando registro en dispositivo");
 
     }
 
