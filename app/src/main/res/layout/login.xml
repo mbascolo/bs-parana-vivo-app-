@@ -62,7 +62,7 @@
                 android:imeOptions="actionNext"
                 android:hint="Nombre"
                 android:textSize="16dp"
-                android:textColor="#FFF" />
+                android:textColor="#3b3b3b" />
 
             <EditText
                 android:layout_width="match_parent"

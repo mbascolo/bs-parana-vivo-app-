@@ -281,7 +281,6 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             //Obteniendo instancias de los elementos
             TextView txtTitulo = (TextView)v.findViewById(R.id.txtTitulo);
             TextView txtSubtitulo = (TextView)v.findViewById(R.id.txtSubtitulo);
-            //TextView txtContenido = (TextView)v.findViewById(R.id.txtContenido);
 
 
             //Obteniendo instancia de la Tarea en la posición actual
@@ -292,7 +291,6 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             //Id.setText(item.getId());
             txtTitulo.setText(item.getTitulo());
             txtSubtitulo.setText(item.getDescripcion());
-            //txtContenido.setText(item.getSpanned());
 
             return v;
 
