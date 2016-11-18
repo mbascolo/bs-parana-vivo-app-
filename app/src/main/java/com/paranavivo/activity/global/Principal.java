@@ -74,6 +74,7 @@ public class Principal extends ActivityBase implements View.OnClickListener {
             cn.execute();
 
         }else{
+            startActivity(new Intent(Principal.this,SinConexion.class));
             Toast.makeText(this,"No tienes conexión a internet",Toast.LENGTH_LONG).show();
         }
 
