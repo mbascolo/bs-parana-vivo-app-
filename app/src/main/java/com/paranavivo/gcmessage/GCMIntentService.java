@@ -59,7 +59,7 @@ public class GCMIntentService extends IntentService {
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.logomunipeq)
+                        .setSmallIcon(R.drawable.icono)
                         .setContentTitle(titulo)
                         .setContentText(mensaje);
 
